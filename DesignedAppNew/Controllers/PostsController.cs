@@ -20,7 +20,6 @@ namespace DesignedAppNew.Controllers
             return View();
         }
 
-
         public ActionResult ListAllPosts()
         {
             List<PostTable> listAllPosts = new List<PostTable>();
@@ -59,6 +58,7 @@ namespace DesignedAppNew.Controllers
                     byte[] data = new byte[newPost.File.ContentLength];
                     newPost.File.InputStream.Read(data, 0, newPost.File.ContentLength);
                     newPost.ImageData = data;
+                    //newPost.UserID = userId;
 
                     dbe.PostTables.Add(newPost);
                     dbe.SaveChanges();
