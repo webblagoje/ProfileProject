@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="PostTable">
+    <Key>
+      <PropertyRef Name="IDPost" />
+    </Key>
+    <Property Name="IDPost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PostTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImageSize" Type="Int32" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="TextPost" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_PostTable_ToTable" FromRole="PostTable" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PostTables" Relationship="Self.FK_PostTable_ToTable" FromRole="UserProfile" ToRole="PostTable" />
+  </EntityType>
+  <Association Name="FK_PostTable_ToTable">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="PostTable" Type="Self.PostTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PostTable">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PostTables" EntityType="Self.PostTable" />
+    <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
+    <AssociationSet Name="FK_PostTable_ToTable" Association="Self.FK_PostTable_ToTable">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="PostTable" EntitySet="PostTables" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

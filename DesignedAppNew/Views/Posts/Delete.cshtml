@@ -1,0 +1,55 @@
+﻿@model DesignedAppNew.Models.PostTable
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>PostTable</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.IDPost)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IDPost)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PostTitle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PostTitle)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ImageSize)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ImageSize)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FileName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FileName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.TextPost)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TextPost)
+    </div>
+</fieldset>
+@using (Html.BeginForm("Delete", "Posts"))
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

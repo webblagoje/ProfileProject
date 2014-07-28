@@ -1,0 +1,31 @@
+﻿@model DesignedAppNew.Models.PostTable
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>PostTable</legend>
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.IDPost)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TextPost)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TextPost)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ListAllPosts")
+</div>
