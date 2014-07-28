@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+            @*<div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>*@
+
+                    <!-- Wrapper Starts -->
+            <div id="wrapper">
+                <!-- Header Starts -->
+                <div id="header">
+                    <!-- Logo Starts -->
+                    <div id="logo">
+                        <h1>Levi9 <font color="#666666"> ProfileBook </font> </h1>
+                        <h2> Innovation • Excellence • Deligence </h2>
+                    </div>
+
+                    <!-- Logo Ends -->
+                </div>
+                <!-- Header Ends -->
+                <!-- Menu Starts -->
+                <div id="menu">
+                    <!-- Menu Items Starts -->
+                    <ul>
+                        @*<li><a href="#"><span>@Html.ActionLink("Home", "Index", "Home")</span></a></li>
+                        <li><a href="#"><span>@Html.ActionLink("About Us", "About", "Home")</span></a></li>
+                        <li><a href="#"><span>@Html.ActionLink("Contact Us", "Contact", "Home")</span></a></li>
+                        <li><a href="#"><span>@Html.ActionLink("Login", "Index", "Home")</span></a></li>
+                        <li><a href="#"><span>@Html.ActionLink("Register", "About", "Home")</span></a></li>
+                        <li><a href="#"><span>@Html.ActionLink("Original Website", "Contact", "Home")</span></a></li>*@
+
+
+                        <li><a href="@Url.Action("Index", "Home")"><span>Home</span></a></li>
+                        <li><a href="@Url.Action("Login", "Account")"><span>Login</span></a></li>
+                        <li><a href="@Url.Action("Register", "Account")"><span>Register</span></a></li>
+                        <li><a href="@Url.Action("OriginalSite", "Home")"><span>Original Website</span></a></li>
+                        <li><a href="@Url.Action("About", "Home")"><span>About us</span></a></li>
+                        <li><a href="@Url.Action("Contact", "Home")"><span>Contact us</span></a></li>
+                        <li><a href="@Html.ActionLink("Contact Us", "Contact", "Home")"><span>News</span></a></li>
+
+
+                        @*<li><span></span>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li><a href="#"><span>about us</span></a></li>
+                        <li><a href="#"><span>services</span></a></li>
+                        <li><a href="#"><span>careers</span></a></li>
+                        <li><a href="#"><span>partners</span></a></li>
+                        <li><a href="#"><span>clients</span></a></li>*@
+                        
+                        
+                        
+                        
+
+
+
+                    </ul>
+                    <!-- Menu Items Ends -->
+                </div>
+                <!-- Menu Ends -->
+                <!-- Container Starts -->
+                <div id="container" class="clearfix">
+                    <!-- Mainarea Starts -->
+                    <div id="mainarea">
+                        <div id="body">
+                            @RenderSection("featured", required: false)
+                            <section class="content-wrapper main-content clear-fix">
+                                @RenderBody()
+                            </section>
+                        </div>
+                        
+                    </div>
+                    <!-- Mainarea Ends -->
+                    <!-- Sidearea Starts -->
+                    <div id="sidearea">
+                        <h2>Latest News!</h2>
+                        <p>
+                            <strong>August 07, 2009</strong><br>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie bibendum sem. Aenean libero metus.
+                            <br><span class="clearfix"><a href="#" class="readmore floatright">»&nbsp;read more</a></span>
+                        </p>
+                        <p class="hr">&nbsp;</p>
+                        <p>
+                            <strong>August 06, 2009</strong><br>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie bibendum sem. Aenean libero metus.
+                            <br><span class="clearfix"><a href="#" class="readmore floatright">»&nbsp;read more</a></span>
+                        </p>
+                    </div>
+                    <!-- Sidearea Ends -->
+                </div>
+                <!-- Container Ends -->
+                <!-- Footer Starts -->
+                <div id="footer">
+                    <p class="floatleft">&copy; @DateTime.Now.Year - Bogdan Blagojevic MVC Application</p>
+                    <p class="floatright"><a href="#">Terms &amp; Condition</a>  |  <a href="#">Privacy Policy</a>  |  <a href="#">Sitemap</a></p>
+                </div>
+                <!-- Footer Ends -->
+            </div>
+            <!-- Wrapper Ends -->
+            
+        </header>
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
