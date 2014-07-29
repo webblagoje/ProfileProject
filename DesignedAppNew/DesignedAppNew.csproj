@@ -215,6 +215,15 @@
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>MyDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\webpages_Membership.cs">
+      <DependentUpon>MyDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_OAuthMembership.cs">
+      <DependentUpon>MyDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_Roles.cs">
+      <DependentUpon>MyDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

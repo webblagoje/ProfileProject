@@ -11,7 +11,7 @@
     <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="TextPost" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="UserID" Type="Int32" />
-    <NavigationProperty Name="UserProfile" Relationship="Self.FK_PostTable_ToTable" FromRole="PostTable" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfile" Relationship="Model.FK_PostTable_ToTable" FromRole="PostTable" ToRole="UserProfile" />
   </EntityType>
   <EntityType Name="UserProfile">
     <Key>
@@ -20,6 +20,7 @@
     <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="PostTables" Relationship="Self.FK_PostTable_ToTable" FromRole="UserProfile" ToRole="PostTable" />
+    <NavigationProperty Name="webpages_Roles" Relationship="Model.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
   </EntityType>
   <Association Name="FK_PostTable_ToTable">
     <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
@@ -40,5 +41,49 @@
       <End Role="UserProfile" EntitySet="UserProfiles" />
       <End Role="PostTable" EntitySet="PostTables" />
     </AssociationSet>
+    <EntitySet Name="webpages_Membership" EntityType="Model.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="Model.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="Model.webpages_Roles" />
+    <AssociationSet Name="webpages_UsersInRoles" Association="Model.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserProfiles" Relationship="Model.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="webpages_UsersInRoles">
+    <End Type="Model.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
+    <End Type="Model.UserProfile" Role="UserProfile" Multiplicity="*" />
+  </Association>
 </Schema>
